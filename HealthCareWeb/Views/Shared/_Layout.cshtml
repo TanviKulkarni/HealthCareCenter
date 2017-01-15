@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Health Care Center</title>
+        @*<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <style>
+            .editor-l {
+                display: block;
+                float: left;
+                padding: 0;
+                width: 200px;
+                margin: 1em 1em 0 0;
+                color:blueviolet;
+            }
+
+            .editor-f {
+                display: inline-block;
+                width: auto;
+                margin: 0.5em 0 0 0;
+                overflow: auto;
+                min-height: 2em;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                       @* @Html.Partial("_LoginPartial")*@
+                    </section>
+                    @if (Session["EmailId"] != null)
+                    {
+                        <div>
+                            @{
+                        Html.RenderAction("ReInfo", "Registration");
+                    }
+                        </div>
+                     
+                         <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Demographics", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Medical and social history", "About", "Home")</li>
+                            <li>@Html.ActionLink("Logout", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                    }
+                   
+    
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                   @* <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>*@
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

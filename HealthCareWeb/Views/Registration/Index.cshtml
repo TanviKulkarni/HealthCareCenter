@@ -1,0 +1,66 @@
+﻿@model HealthCareWeb.Models.Login
+
+@{
+    ViewBag.Title = "Index";
+}
+@*<style>
+    .editor-l {
+        display: block;
+        float: left;
+        padding: 0;
+        width: 200px;
+        margin: 1em 1em 0 0;
+    }
+
+    .editor-f {
+        display: inline-block;
+        width: auto;
+        margin: 0.5em 0 0 0;
+        overflow: auto;
+        min-height: 2em;
+    }
+</style>*@
+<h2>Please enter your login information</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Login</legend>
+
+      <div>
+          <div class="editor-l">
+              @Html.LabelFor(model => model.EmailId)
+          </div>
+          <div class="editor-f">
+              @Html.TextBoxFor(model => model.EmailId)
+              @Html.ValidationMessageFor(model => model.EmailId)
+          </div>
+      </div>
+       
+        <div>
+            <div class="editor-l">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="editor-f">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+        
+        @Html.RadioButtonFor(model => model.User,"Petient")Patient
+        <p>
+           @* <input type="radio" value="Patient" />*@
+            <input type="submit" value="Login" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Register Here", "Save")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
